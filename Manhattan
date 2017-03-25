@@ -1,0 +1,13 @@
+(DEFUN manhattan(estado)
+	(SETQ man 0) ;; man es la distancia manhattan del estado total
+	(LOOP for i from 0 to 8
+		(DO (SETF actual (NTH i estado))
+			(SETF distancia_ith (NTH i distancias))
+			(SETF costo_i (NTH actual distancia_ith))
+			(INCF man costo_i))
+	man))
+		
+(SETQ distancias '((0 1 2 1 2 3 2 3 4) (1 0 1 2 1 2 3 2 3) (2 1 0 3 2 1 4 3 2) 
+				   (1 2 3 0 1 2 1 2 3) (2 1 2 1 0 1 2 1 2) (3 2 1 2 1 0 3 2 1) 
+				   (2 3 4 1 2 3 0 1 2) (3 2 3 2 1 2 1 0 1) (4 3 2 3 2 1 2 1 0))
+				   
