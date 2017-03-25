@@ -1,0 +1,10 @@
+(defun encuentracero (estado)
+    (setq ind 0)
+    (loop 
+    (when (eq (nth ind estado) 0)(return ind))
+    (when (eq ind 9)(return 0))
+    (incf ind)
+    )
+ )
+ 
+ 
