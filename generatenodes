@@ -41,6 +41,31 @@
     )
 hijos)
 
+(DEFUN manhattan(estado)
+	(SETQ man 0)
+	(SETQ i 0)		;; man es la distancia manhattan del estado total
+	(LOOP  
+			(WHEN (> i 8) (RETURN man))
+			(SETF actual (NTH i estado))
+			(SETF distancia_ith (NTH i distancias))
+			(SETF costo_i (NTH actual distancia_ith))
+			(INCF man costo_i)
+			(INCF i)))
+		
+(SETQ distancias '((0 1 2 1 2 3 2 3 4) (1 0 1 2 1 2 3 2 3) (2 1 0 3 2 1 4 3 2) 
+				   (1 2 3 0 1 2 1 2 3) (2 1 2 1 0 1 2 1 2) (3 2 1 2 1 0 3 2 1) 
+				   (2 3 4 1 2 3 0 1 2) (3 2 3 2 1 2 1 0 1) (4 3 2 3 2 1 2 1 0)))
+                   
+                   
+(defun a* (inicial)
+    (setq abierto ())
+    (setq cerrado ())
+    ;; definimos al nodo como (estado papa nivel heuristica total)
+    
+    (push (setq first (estado nil 0 (heuristica inicial) (+ 0 (heuristica inicial)))) abierto)
+    
+abierto)
+
 
  
  
