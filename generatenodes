@@ -66,6 +66,34 @@ hijos)
     
 abierto)
 
+(defun find-min-cost (abierto)
+    (setf minVal (car (nth 5 abierto)))
+    (setf mindex 0)
+    (setf i 0)
+    (dolist (n abierto)
+        (setf costoN (nth 5 n))
+        (if 
+            (< costoN minVal) (setq mindex i)(setf minVal costoN)(incf i)
+        )
+    )
+)
+
+;; con esta función vemos el índice del nodo más prometedor en abierto, examinando su costo total que está en la cuarta posición
+;; del objeto nodo (expresado como lista)
+
+(defun find-min-cost (ab)
+   (setf minVal (nth 4 (car ab)))
+    (setf mindex 0)
+    (setf i 0)
+    (dolist (n ab)
+        (setf costoN (nth 4 n))
+        (if 
+            (< costoN minVal) (setq mindex i)(setf minVal costoN)
+        )
+        (incf i)
+    )
+ mindex)
+
 
  
  
