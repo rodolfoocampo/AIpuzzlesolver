@@ -1,4 +1,5 @@
-;; esta función te dice dónde esta el cero dado un estado, es decir, devuelve el índice. Esto lo usaremos para 
+;; esta función te dice dónde esta el cero dado un estado, es decir, devuelve el índice. Esto lo usaremos para buscar posibles movimientos a partir
+;; de este punto
 (defun encuentracero (estado)
     (setq ind 0)
     (loop 
