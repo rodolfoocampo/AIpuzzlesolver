@@ -27,6 +27,20 @@
 ((not(minusp n)) (cons (car lst)
 (insert-at-n (1- n)(cdr lst) elem)))
 (T (write "error"))))
+
+;; buscamos dónde está cero, vemos que movimientos puede hacer desde ese lugar y los hacemos usando el swap entre el lugar actual del
+;; cero y sus posibilidades
+
+(defun genera-hijitos (estado)
+    (setq hijos '())
+    (setq lugar-cero (encuentracero estado))
+    (setq posibles-particular (nth lugar-cero posibles))
+    (dolist (n posibles-particular)
+    (push (swap n lugar-cero estado) hijos)
+    )
+hijos)
+
+
  
  
  
