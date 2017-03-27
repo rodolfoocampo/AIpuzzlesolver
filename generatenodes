@@ -1,0 +1,123 @@
+;; esta función te dice dónde esta el cero dado un estado, es decir, devuelve el índice. Esto lo usaremos para buscar posibles movimientos a partir
+;; de este punto
+(defun encuentracero (estado)
+    (setq ind 0)
+    (loop 
+    (when (eq (nth ind estado) 0)(return ind))
+    (when (eq ind 9)(return 0))
+    (incf ind)
+    )
+ )
+ 
+ (setq posibles '((1 3) (0 2 4) (1 5) (0 4 6) (1 3 5 7) (2 4 8) (3 7) (6 4 8) (5 7)))
+ 
+;; swapea dos elementos de una lista dados sus índices
+
+(defun swap (i j estado)
+    (setq aux (nth i estado))
+    (setq estado (insert-at-n i estado (nth j estado)))
+    (setq estado (insert-at-n j estado aux))
+ estado)
+ 
+ ;; esta función inserta un elemento en una lista en el índice n dado
+ 
+ (defun insert-at-n (n lst elem)
+(cond
+((null lst)(list elem))
+((zerop n) (cons elem (cdr lst)))
+((not(minusp n)) (cons (car lst)
+(insert-at-n (1- n)(cdr lst) elem)))
+(T (write "error"))))
+
+;; buscamos dónde está cero, vemos que movimientos puede hacer desde ese lugar y los hacemos usando el swap entre el lugar actual del
+;; cero y sus posibilidades
+
+(defun genera-hijitos (estado)
+    (setq hijos '())
+    (setq lugar-cero (encuentracero estado))
+    (setq posibles-particular (nth lugar-cero posibles))
+    (dolist (n posibles-particular)
+    (push (swap n lugar-cero estado) hijos)
+    )
+hijos)
+
+
+
+(defun genera-nodo (estado nivel n lugar-cero)
+    (setq hijo '())	
+    (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
+    (push (heuristica (swap n lugar-cero estado)) hijo)
+    (push (incf nivel) hijo)
+    ;; este es el papa
+    (push estado hijo)
+    ;; este es el hijo
+    (push (swap n lugar-cero estado) hijo)
+hijo)
+
+;; definicion de nodo (estado papa nivel heuristica total)
+
+(DEFUN manhattan(estado)
+	(SETQ man 0)
+	(SETQ i 0)		;; man es la distancia manhattan del estado total
+	(LOOP  
+			(WHEN (> i 8) (RETURN man))
+			(SETF actual (NTH i estado))
+			(SETF distancia_ith (NTH i distancias))
+			(SETF costo_i (NTH actual distancia_ith))
+			(INCF man costo_i)
+			(INCF i)))
+		
+(SETQ distancias '((0 1 2 1 2 3 2 3 4) (1 0 1 2 1 2 3 2 3) (2 1 0 3 2 1 4 3 2) 
+				   (1 2 3 0 1 2 1 2 3) (2 1 2 1 0 1 2 1 2) (3 2 1 2 1 0 3 2 1) 
+				   (2 3 4 1 2 3 0 1 2) (3 2 3 2 1 2 1 0 1) (4 3 2 3 2 1 2 1 0)))
+                   
+     
+(defun heuristica (estado)
+	(manhattan estado)
+)
+
+
+
+
+;; con esta función vemos el índice del nodo más prometedor en abierto, examinando su costo total que está en la cuarta posición
+;; del objeto nodo (expresado como lista)
+
+(defun find-min-cost (ab)
+   (setf minVal (nth 4 (car ab)))
+    (setf mindex 0)
+    (setf i 0)
+    (dolist (n ab)
+        (setf costoN (nth 4 n))
+        (if 
+            (< costoN minVal) (setq mindex i)(setf minVal costoN)
+        )
+        (incf i)
+    )
+ mindex)
+ 
+ (defun a* (inicial)
+   (setq abierto ())
+   (setq cerrado ())
+    ;; definimos al nodo como (estado papa nivel heuristica total)
+    
+    (push (list estado nil 0 (heuristica estado) (+ 0 (heuristica estado))) abierto)
+    
+    (loop 
+    	(setf minCostIndex (find-min-cost abierto))
+    	(setf current (nth minCostIndex abierto))
+	
+	;; luego definiremos la funcion de recosntruccion
+    	(when (equal (nth 0 current))(return (reconstruct cerrado)))
+    	(when (null abierto) (return 'error))
+    )
+abierto)
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
