@@ -9,12 +9,7 @@
     )
  )
  
- (defun deDonde(indInicial indFinal)
-    (cond
-        ((= indFinal (+ indInicial 1)) (setq res 'derecha))
-        ((> indFinal (+ indInicial 1)) (setq res 'abajo))
-        ((= indFinal (- indInicial 1)) (setq res 'Izquierda))
-        (t(setq res 'arriba))))
+
  
  (setq posibles '((1 3) (0 2 4) (1 5) (0 4 6) (1 3 5 7) (2 4 8) (3 7) (6 4 8) (5 7)))
  
@@ -73,10 +68,6 @@ hijos)
 				   
 ;; definicion de nodo (estado papa nivel heuristica total movimiento)               
      
-(defun heuristica (estado)
-	(manhattan estado)
-)
-
 (defun get-estado (nodo)
    (nth 0 nodo)
 )
@@ -97,16 +88,18 @@ hijos)
    (nth 4 nodo)
 )
 
-(defun get-mov (nodo)
-   (nth 5 nodo)
+(defun get-mi-direc (nodo)
+   (nth 6 nodo)	
 )
 
 (defun get-dirpapa (nodo)
-   (nth 6 nodo)
+   (nth 5 nodo)
 )
 
-(defun get-mi-direc (nodo)
-   (nth 7 nodo)	
+
+
+(defun get-nodo-papa (nodo)
+    (nth 7 nodo)
 )
 
 
@@ -128,15 +121,14 @@ hijos)
     )
  mindex)
  
-  (defun genera-nodos (nodo)
-   (setq hijos '())
-   (setq state (get-estado nodo))
-   (setq lugar-cero (encuentracero state))
-   (setq posibles-particular (nth lugar-cero posibles))
-   (dolist (n posibles-particular)
-    (push (genera-nodo state (get-nivel nodo) n lugar-cero) hijos)
-    )
-hijos)
+  (defun valido(oper1 oper2)
+    (cond
+        ((and (equal oper1 'izquierda)(equal oper2 'derecha))nil)
+        ((and (equal oper1 'derecha)(equal oper2 'izquierda))nil)
+        ((and (equal oper1 'arriba)(equal oper2 'abajo))nil)
+        ((and (equal oper1 'abajo)(equal oper2 'arriba))nil)
+        (t)))
+ 
 
 (defun genera-nodos2 (nodo)
    (setq hijos '())
@@ -144,14 +136,16 @@ hijos)
    (setq lugar-cero (encuentracero state))
    (setq posibles-particular (nth lugar-cero posibles))
    (dolist (n posibles-particular)
-    (setq nuevo (genera-nodo state (get-nivel nodo) n lugar-cero (get-dirpapa nodo)))
-    (push nuevo hijos)
+    (setq nuevo (genera-nodo nodo state (get-nivel nodo) n lugar-cero (get-mi-direc nodo)))
+    (if
+    	(valido (get-mi-direc nuevo) (get-dirpapa nuevo)) (push nuevo hijos))
     )
 hijos)
 
-(defun genera-nodo (estado nivel n lugar-cero direc-papa)
+(defun genera-nodo (nodo estado nivel n lugar-cero direc-papa)
     (setq hijo '())	
     (setq mi-direc (deDonde lugar-cero n))
+    (push nodo hijos)
     (push mi-direc hijo)
     (push direc-papa hijo)
     (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
@@ -162,6 +156,15 @@ hijos)
     ;; este es el hijo
     (push (swap n lugar-cero estado) hijo)
 hijo)
+
+ (defun deDonde(indInicial indFinal)
+    (cond
+        ((= indFinal (+ indInicial 1)) (setq res 'derecha))
+        ((> indFinal (+ indInicial 1)) (setq res 'abajo))
+        ((= indFinal (- indInicial 1)) (setq res 'Izquierda))
+        (t(setq res 'arriba))))
+
+
 
 
  
