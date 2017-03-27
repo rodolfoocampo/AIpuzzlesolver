@@ -174,34 +174,36 @@ hijo)
 
 
  
- 
+ ;; definicion de nodo -> ("mi estado" "estado de mi papa" "mi-nivel-de-profundidad" "mi heuristica" "mi costo total f score"
+ ;;"el movimiento que llevo a mi" "el movimiento que llevo a mi papa" "el nodo de mi papa")
  
 (defun aEstrella (estado-inicial estado-meta)
-   (setq abierto ())
-   (setq cerrado ())
+   (setf abierto ())
+   (setf cerrado ())
 
    
-    (push (list estado-inicial nil 0 (heuristica estado-inicial) (+ 0 (heuristica estado-inicial)) nil) abierto)
+    (push (list estado-inicial nil 0 (heuristica estado-inicial) (+ 0 (heuristica estado-inicial)) nil nil nil) abierto)
     
     (loop
         ; Crear lista con solo los puzzles para poder buscar en ellos más facilmente.
         (when (null abierto) nil)
-        (setq abierto-puzzles ())
+        (setf abierto-puzzles ())
         (dolist (n abierto)
-	    (print n)
+	    
             (push (get-estado n) abierto-puzzles))
         ; Crear lista con solo los puzzles para poder buscar en ellos más facilmente.
-        (setq cerrado-puzzles ())
+        (setf cerrado-puzzles ())
         (dolist (n cerrado)
 	    
             (push (get-estado n) cerrado-puzzles))
         (setf minCostIndex (find-min-cost abierto))
         (setf current (nth minCostIndex abierto))
         (setf hijos (genera-nodos2 current))
+	(print hijos)
         (when (equal (get-estado current) estado-meta)(return (reconstruct actual)))
         ; Manda el actual a cerrado y lo borra de abierto
         (push (nth minCostIndex abierto) cerrado)
-        (setq abierto (remove minCostIndex abierto))
+        (setf abierto (remove current abierto))
         (dolist (n hijos) 
             ; Checar que el puzzle del n-esimo hijo no esté en cerrado.
             (if (null(member (get-estado n) cerrado-puzzles)) 
@@ -221,8 +223,8 @@ hijo)
 (defun reconstruct (base)
     (setq camino ())
     (cond
-        ((null (fifth base))camino)
-        (t (push (fifth base) camino)(reconstruct(second base)))))
+        ((null (get-dirpapa base))camino)
+        (t (push (get-dirpapa base) camino)(reconstruct(get-nodo-papa base)))))
 
 
  (defun valido(oper1 oper2)
@@ -232,7 +234,8 @@ hijo)
         ((and (equal oper1 'arriba)(equal oper2 'abajo))nil)
         ((and (equal oper1 'abajo)(equal oper2 'arriba))nil)
         (t)))
-
+	
+(aestrella '(1 2 0 3 4 5 6 7 8) '(0 1 2 3 4 5 6 7 8))
 
 
  
