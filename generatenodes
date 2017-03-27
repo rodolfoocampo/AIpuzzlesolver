@@ -105,6 +105,10 @@ hijos)
    (nth 6 nodo)
 )
 
+(defun get-mi-direc (nodo)
+   (nth 7 nodo)	
+)
+
 
 
 
@@ -147,6 +151,8 @@ hijos)
 
 (defun genera-nodo (estado nivel n lugar-cero direc-papa)
     (setq hijo '())	
+    (setq mi-direc (deDonde lugar-cero n))
+    (push mi direc hijo)
     (push direc-papa hijo)
     (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
     (push (heuristica (swap n lugar-cero estado)) hijo)
