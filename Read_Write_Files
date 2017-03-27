@@ -1,0 +1,26 @@
+Función de StackOverflow
+(defun my-copy-file (from-file to-file)
+  (with-open-file (input-stream from-file
+                :direction :input
+                :element-type '(unsigned-byte 8))
+    (with-open-file (output-stream to-file
+                   :direction :output
+                   :if-exists :supersede
+                   :if-does-not-exist :create
+                   :element-type '(unsigned-byte 8))
+      (let ((buf (make-array 4096 :element-type (stream-element-type input-stream))))
+    (loop for pos = (read-sequence buf input-stream)
+       while (plusp pos)
+       do (write-sequence buf output-stream :end pos))))))
+
+Función implementada
+(DEFUN leer()
+	(SETQ a NIL)
+	(LOOP
+		(WHEN (NOT (NULL a)) () (SETQ LST1 (LIST (READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a))
+									LST2 (LIST (READ a)(READ A)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a))
+									eb (LST1)
+									em (LST2)
+									n-ini (APPEND '(1 NIL 0 100 NIL)(LIST eb)))
+									(CLOSE a)(RETURN (verifica eb em))) ;la función verifica checa si son iguales el estado base al estado meta y si no empieza a resolver
+									(SETQ a(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt" :if-does-not-exist nil))))

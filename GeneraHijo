@@ -1,0 +1,15 @@
+(SETQ posibilidades '((0 3) (0 2 4) (1 5) (0 4) (1 3 5 7) (4 8) (3 7) (4 6 8) (5 7)))
+
+(DEFUN generahijos (estado)
+
+(DEFUN busquedacero (estado indi)
+	(COND ((EQ (CAR estado) 0) (WRITE indi))
+		(t(busquedacero ((CDR estado) (INCF indi))))))) 
+
+(DEFUN busquedacero (estado)
+	(SETQ i 0)
+	(LOOP
+		(WHILE (<= i 8)
+			(WHEN (ZEROP (CAR estado)) (RETURN i))
+		(
+	
