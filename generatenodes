@@ -106,6 +106,8 @@ hijos)
     (nth 7 nodo)
 )
 
+;; definicion de nodo -> ("mi estado" "estado de mi papa" "mi-nivel-de-profundidad" "mi heuristica" "mi costo total f score"
+;;"el movimiento que llevo a mi" "el movimiento que llevo a mi papa" "el nodo de mi papa")
 
 
 
