@@ -41,14 +41,7 @@
     )
 hijos)
 
-(defun genera-hijitos (estado nivel)
-    (setq hijos '())
-    (setq lugar-cero (encuentracero estado))
-    (setq posibles-particular (nth lugar-cero posibles))
-    (dolist (n posibles-particular)
-    (push (swap n lugar-cero estado) hijos)
-    )
-hijos)
+
 
 (defun genera-nodos (estado nivel n lugar-cero)
     (setq hijo '())	
