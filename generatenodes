@@ -101,6 +101,10 @@ hijos)
    (nth 5 nodo)
 )
 
+(defun get-dirpapa (nodo)
+   (nth 6 nodo)
+)
+
 
 
 
@@ -130,8 +134,9 @@ hijos)
     )
 hijos)
 
-(defun genera-nodo (estado nivel n lugar-cero)
+(defun genera-nodo (estado nivel n lugar-cero direc-papa)
     (setq hijo '())	
+    (push direc-papa hijo)
     (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
     (push (heuristica (swap n lugar-cero estado)) hijo)
     (push (incf nivel) hijo)
