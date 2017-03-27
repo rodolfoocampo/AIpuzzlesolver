@@ -87,16 +87,93 @@ public void textfield18_change1(GTextField source, GEvent event) { //_CODE_:text
 } //_CODE_:textfield18:874004:
 
 public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:375468:
+
+int i0, i1, i2, i3, i4, i5, i6, i7, i8, j0, j1, j2, j3, j4, j5, j6, j7, j8;
+
+  i0 = Integer.valueOf(textfield1.getText());
+  i1 = Integer.valueOf(textfield2.getText());
+  i2 = Integer.valueOf(textfield3.getText());
+  i3 = Integer.valueOf(textfield4.getText());
+  i4 = Integer.valueOf(textfield5.getText());
+  i5 = Integer.valueOf(textfield6.getText());
+  i6 = Integer.valueOf(textfield7.getText());
+  i7 = Integer.valueOf(textfield8.getText());
+  i8 = Integer.valueOf(textfield9.getText());
+  j0 = Integer.valueOf(textfield10.getText());
+  j1 = Integer.valueOf(textfield11.getText());
+  j2 = Integer.valueOf(textfield12.getText());
+  j3 = Integer.valueOf(textfield13.getText());
+  j4 = Integer.valueOf(textfield14.getText());
+  j5 = Integer.valueOf(textfield15.getText());
+  j6 = Integer.valueOf(textfield16.getText());
+  j7 = Integer.valueOf(textfield17.getText());
+  j8 = Integer.valueOf(textfield18.getText());
+  
+  String si0 = Integer.toString(i0);
+  String si1 = Integer.toString(i1);
+  String si2 = Integer.toString(i2);
+  String si3 = Integer.toString(i3);
+  String si4 = Integer.toString(i4);
+  String si5 = Integer.toString(i5);
+  String si6 = Integer.toString(i6);
+  String si7 = Integer.toString(i7);
+  String si8 = Integer.toString(i8);
+  String sj0 = Integer.toString(j0);
+  String sj1 = Integer.toString(j1);
+  String sj2 = Integer.toString(j2);
+  String sj3 = Integer.toString(j3);
+  String sj4 = Integer.toString(j4);
+  String sj5 = Integer.toString(j5);
+  String sj6 = Integer.toString(j6);
+  String sj7 = Integer.toString(j7);
+  String sj8 = Integer.toString(j8);
+  String sf = si0 + " " + si1 + " " + si2 + " " +  si3 + " " + si4 + " " + si5 + " " + si6 + " " + si7 + " " + si8 + " " + sj0 + " " + sj1 + " " + sj2 + " " + sj3 + " " + sj4 + " " + sj5 + " " + sj6 + " " + sj7 + " " + sj8;
+  String[] lst = split(sf, ' ');
+  saveStrings("lst.txt", lst);
+  
+  boolean react = false; /* ¿Cómo declaras tu bandera? */
+  
+  while(!react){
+    File a = new File("/Users/Christian/Documents/Processing/sketch_8puzzleGUI/res.txt");
+    if(a.exists()){
+      String res[] = loadStrings("res.txt");
+      textarea1.setText(res);
+      react = true;
+  }
+}
+ 
+  
   println("button1 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:button1:375468:
 
 public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:372289:
+  textfield1.setText("");
+  textfield2.setText("");
+  textfield3.setText("");
+  textfield4.setText("");
+  textfield5.setText("");
+  textfield6.setText("");
+  textfield7.setText("");
+  textfield8.setText("");
+  textfield9.setText("");
+  textfield10.setText("");
+  textfield11.setText("");
+  textfield12.setText("");
+  textfield13.setText("");
+  textfield14.setText("");
+  textfield15.setText("");
+  textfield16.setText("");
+  textfield17.setText("");
+  textfield18.setText("");
+  
+  File file1 = new File("/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt");
+  File file2 = new File("/Users/Christian/Documents/Processing/sketch_8puzzleGUI/res.txt");
+  
+  file1.delete();
+  file2.delete();
+  
   println("button2 - GButton >> GEvent." + event + " @ " + millis());
 } //_CODE_:button2:372289:
-
-public void button3_click1(GButton source, GEvent event) { //_CODE_:button3:584362:
-  println("button3 - GButton >> GEvent." + event + " @ " + millis());
-} //_CODE_:button3:584362:
 
 public void textarea1_change1(GTextArea source, GEvent event) { //_CODE_:textarea1:968842:
   println("textarea1 - GTextArea >> GEvent." + event + " @ " + millis());
@@ -177,28 +254,24 @@ public void createGUI(){
   label2.setTextBold();
   label2.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   label2.setOpaque(false);
-  button1 = new GButton(this, 100, 210, 80, 30);
+  button1 = new GButton(this, 100, 200, 80, 30);
   button1.setText("Resolver");
   button1.setTextBold();
   button1.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   button1.addEventHandler(this, "button1_click1");
-  button2 = new GButton(this, 240, 210, 80, 30);
+  button2 = new GButton(this, 240, 200, 80, 30);
   button2.setText("Limpiar");
   button2.setTextBold();
   button2.setLocalColorScheme(GCScheme.RED_SCHEME);
   button2.addEventHandler(this, "button2_click1");
-  button3 = new GButton(this, 155, 170, 110, 30);
-  button3.setText("Enviar información");
-  button3.setTextBold();
-  button3.setLocalColorScheme(GCScheme.YELLOW_SCHEME);
-  button3.addEventHandler(this, "button3_click1");
   label3 = new GLabel(this, 170, 250, 80, 20);
   label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label3.setText("Solución");
+  label3.setText("Solución:");
   label3.setTextBold();
   label3.setLocalColorScheme(GCScheme.GREEN_SCHEME);
   label3.setOpaque(false);
-  textarea1 = new GTextArea(this, 50, 275, 330, 255, G4P.SCROLLBARS_VERTICAL_ONLY);
+  textarea1 = new GTextArea(this, 50, 275, 330, 255, G4P.SCROLLBARS_VERTICAL_ONLY | G4P.SCROLLBARS_AUTOHIDE);
+  textarea1.setPromptText("Aquí se muestra la lista de pasos para llegar a la solución:");
   textarea1.setOpaque(true);
   textarea1.addEventHandler(this, "textarea1_change1");
 }
@@ -227,6 +300,5 @@ GTextField textfield18;
 GLabel label2; 
 GButton button1; 
 GButton button2; 
-GButton button3; 
 GLabel label3; 
 GTextArea textarea1; 

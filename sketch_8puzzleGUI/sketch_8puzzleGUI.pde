@@ -1,5 +1,6 @@
 // Need G4P library
 import g4p_controls.*;
+import java.io.*;
 
 
 public void setup(){
@@ -11,7 +12,7 @@ public void setup(){
 }
 
 public void draw(){
-  background(230);
+  background(200);
   
 }
 
