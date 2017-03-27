@@ -180,13 +180,7 @@ hijo)
    (setq abierto ())
    (setq cerrado ())
 
-    ;; El Nodo contiene: 
-    ;; 1) El estado actual.
-    ;; 2) Su papa (como nodo).
-    ;; 3) El costo para llegar a el g👎.
-    ;; 4) El costo heuristico a la meta h👎.
-    ;; 5) El costo total f👎 = g(n)+h(n).
-    ;; 6) El movimiento con el que se llego a este nodo.
+   
     (push (list estado-inicial nil 0 (heuristica estado-inicial) (+ 0 (heuristica estado-inicial)) nil) abierto)
     
     (loop
