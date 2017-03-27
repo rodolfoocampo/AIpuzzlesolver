@@ -15,12 +15,12 @@ Función de StackOverflow
 
 Función implementada
 (DEFUN leer()
-	(SETQ a NIL)
+	(SETQ l NIL)
 	(LOOP
-		(WHEN (NOT (NULL a)) () (SETQ LST1 (LIST (READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a))
-									LST2 (LIST (READ a)(READ A)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a)(READ a))
+		(UNLESS (NOT (NULL l)) () (SETQ LST1 (LIST (READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l))
+									LST2 (LIST (READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l))
 									eb (LST1)
 									em (LST2)
-									n-ini (APPEND '(1 NIL 0 100 NIL)(LIST eb)))
-									(CLOSE a)(RETURN (verifica eb em))) ;la función verifica checa si son iguales el estado base al estado meta y si no empieza a resolver
-									(SETQ a(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt" :if-does-not-exist nil))))
+									n-ini (APPEND '(1 NIL 0 manhattan(eb) NIL)(LIST eb)))
+									(CLOSE l)(RETURN (verifica eb em))) ;la función verifica checa si son iguales el estado base al estado meta y si no empieza a resolver
+									(SETQ l(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt" :if-does-not-exist nil))))
