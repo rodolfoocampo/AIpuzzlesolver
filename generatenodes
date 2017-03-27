@@ -41,15 +41,7 @@
     )
 hijos)
 
-(defun genera-nodos (nodo)
-   (setq hijos '())
-   (setq state (get-estado nodo))
-   (setq lugar-cero (encuentracero estado))
-   (setq posibles-particular (nth lugar-cero posibles))
-   (dolist (n posibles-particular)
-    (push (genera-nodo state (get-nivel state) n lugar-cero) hijos)
-    )
-hijos)
+
 
 (defun genera-nodo (estado nivel n lugar-cero)
     (setq hijo '())	
@@ -61,6 +53,8 @@ hijos)
     ;; este es el hijo
     (push (swap n lugar-cero estado) hijo)
 hijo)
+
+(defun es-valido )
 
 ;; definicion de nodo (estado papa nivel heuristica total)
 
