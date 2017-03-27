@@ -41,7 +41,15 @@
     )
 hijos)
 
-
+(defun genera-nodos (nodo)
+   (setq hijos '())
+   (setq state (get-estado nodo))
+   (setq lugar-cero (encuentracero estado))
+   (setq posibles-particular (nth lugar-cero posibles))
+   (dolist (n posibles-particular)
+    (push (genera-nodo state (get-nivel state) n lugar-cero) hijos)
+    )
+hijos)
 
 (defun genera-nodo (estado nivel n lugar-cero)
     (setq hijo '())	
@@ -75,6 +83,10 @@ hijo)
      
 (defun heuristica (estado)
 	(manhattan estado)
+)
+
+(defun get-estado (nodo)
+   (nth 0 nodo)
 )
 
 (defun get-papa (nodo)
@@ -115,6 +127,18 @@ hijo)
         (incf i)
     )
  mindex)
+ 
+  (defun genera-nodos (nodo)
+   (setq hijos '())
+   (setq state (get-estado nodo))
+   (setq lugar-cero (encuentracero state))
+   (setq posibles-particular (nth lugar-cero posibles))
+   (dolist (n posibles-particular)
+    (push (genera-nodo state (get-nivel nodo) n lugar-cero) hijos)
+    )
+hijos)
+ 
+ 
  
  (defun a* (inicial)
    (setq abierto ())
