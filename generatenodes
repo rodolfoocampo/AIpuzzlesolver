@@ -43,7 +43,7 @@ hijos)
 
 
 
-(defun genera-nodos (estado nivel n lugar-cero)
+(defun genera-nodo (estado nivel n lugar-cero)
     (setq hijo '())	
     (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
     (push (heuristica (swap n lugar-cero estado)) hijo)
