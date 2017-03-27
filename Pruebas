@@ -1,0 +1,36 @@
+(defun dummy(estadoInicial)
+    (list arriba izquierda arriba derecha abajo))
+	
+(DEFUN leer("/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt")
+	(WITH-OPEN-FILE (STREAM "/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt")
+		(LOOP FOR line = (READ-LINE STREAM NIL)
+			WHILE line
+			COLLECT line)))
+			
+(DEFUN escribir(lst)
+	(SETQ i 0 l lst)
+	(SETQ r(OPEN "/Users/Christian/Documents/Processing/sketch_8puzzleGUI/res.txt" :direction :output))
+	(LOOP WHILE (< i (LENGTH lst))
+		DO(WRITE-LINE (WRITE-TO-STRING(POP l)) r)(INCF i))
+		(CLOSE r))
+		
+(DEFUN leer()
+	(SETQ l NIL)
+	(LOOP
+		(UNLESS (NOT (NULL l)) () (SETQ LST1 (LIST (READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l))
+									LST2 (LIST (READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l)(READ l))
+									eb (LST1)
+									em (LST2)
+									n-ini (APPEND '(1 NIL 0 manhattan(eb) NIL)(LIST eb)))
+									(CLOSE l)(RETURN (verifica eb em))) ;la función verifica checa si son iguales el estado base al estado meta y si no empieza a resolver
+									(SETQ l(OPEN "/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt" :if-does-not-exist nil))))
+	
+		
+(defun prender() (setq a nil)
+	(loop
+		(when (not (null a)) (setq list1 (list (read a) (read a) (read a)) list2 (list (read a) (read a) (read a))
+												 list3 (list (read a) (read a) (read a)) list4 (list (read a) (read a) (read a))
+												 list5 (list (read a) (read a) (read a)) list6 (list (read a) (read a) (read a))
+												 ei (list list1 list2 list3) ef (list list4 list5 list6)  n-ini  (append '(1 nil 0 100 nil) (list ei)))
+		(close a) (return  (verifica ei ef))) ;¿Que te regresa la función verifica?
+		(setq a (open "/Users/Julio/Dropbox/InteligenciaArtificial/Puzzle/GUIpuzzle/list.txt" :if-does-not-exist nil))))
