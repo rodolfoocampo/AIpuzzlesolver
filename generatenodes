@@ -152,7 +152,7 @@ hijos)
     (push nodo hijos)
     (push mi-direc hijo)
     (push direc-papa hijo)
-    (push (+ (incf nivel) (heuristica (swap n lugar-cero estado))) hijo)
+    (push (+ (+ 1 nivel) (heuristica (swap n lugar-cero estado))) hijo)
     (push (heuristica (swap n lugar-cero estado)) hijo)
     (push (incf nivel) hijo)
     ;; este es el papa
