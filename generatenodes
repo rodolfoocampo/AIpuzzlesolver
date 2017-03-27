@@ -9,6 +9,13 @@
     )
  )
  
+ (defun deDonde(indInicial indFinal)
+    (cond
+        ((= indFinal (+ indInicial 1)) (setq res 'derecha))
+        ((> indFinal (+ indInicial 1)) (setq res 'abajo))
+        ((= indFinal (- indInicial 1)) (setq res 'Izquierda))
+        (t(setq res 'arriba))))
+ 
  (setq posibles '((1 3) (0 2 4) (1 5) (0 4 6) (1 3 5 7) (2 4 8) (3 7) (6 4 8) (5 7)))
  
 ;; swapea dos elementos de una lista dados sus índices
