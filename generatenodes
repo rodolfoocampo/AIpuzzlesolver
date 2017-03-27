@@ -176,22 +176,66 @@ hijo)
  
  
  
- (defun a* (inicial)
+(defun aEstrella (estado-inicial estado-meta)
    (setq abierto ())
    (setq cerrado ())
-    ;; definimos al nodo como (estado papa nivel heuristica total)
+
+    ;; El Nodo contiene: 
+    ;; 1) El estado actual.
+    ;; 2) Su papa (como nodo).
+    ;; 3) El costo para llegar a el g👎.
+    ;; 4) El costo heuristico a la meta h👎.
+    ;; 5) El costo total f👎 = g(n)+h(n).
+    ;; 6) El movimiento con el que se llego a este nodo.
+    (push (list estado-inicial nil 0 (heuristica estado-inicial) (+ 0 (heuristica estado-inicial)) nil) abierto)
     
-    (push (list estado nil 0 (heuristica estado) (+ 0 (heuristica estado))) abierto)
-    
-    (loop 
-    	(setf minCostIndex (find-min-cost abierto))
-    	(setf current (nth minCostIndex abierto))
-	
-	;; luego definiremos la funcion de recosntruccion
-    	(when (equal (nth 0 current))(return (reconstruct cerrado)))
-    	(when (null abierto) (return 'error))
-    )
-abierto)
+    (loop
+        ; Crear lista con solo los puzzles para poder buscar en ellos más facilmente.
+        (when (null abierto) nil)
+        (setq abierto-puzzles ())
+        (dolist (n abierto)
+            (push (get-estado n) abierto-puzzles))
+        ; Crear lista con solo los puzzles para poder buscar en ellos más facilmente.
+        (setq cerrado-puzzles ())
+        (dolist (n cerrado)
+            (push (get-estado n) cerrado-puzzles))
+        (setf minCostIndex (find-min-cost abierto))
+        (setf current (nth minCostIndex abierto))
+        (setf hijos (genera-nodos2 current))
+        (when (equal (get-estado current) estado-meta)(return (reconstruct actual)))
+        ; Manda el actual a cerrado y lo borra de abierto
+        (push (nth minCostIndex abierto) cerrado)
+        (setq abierto (remove minCostIndex abierto))
+        (dolist (n hijos) 
+            ; Checar que el puzzle del n-esimo hijo no esté en cerrado.
+            (if (null(member (get-estado n) cerrado-puzzles)) 
+                (cond
+                    ; Si no es miembro de abierto metelo a abierto.
+                    ((null (member (get-estado n) abierto-puzzles))
+                        (push n abierto))
+                    ; Si esta en abierto, revisar si el costo de llegar a el es menor al costo 
+                    ; de llegar al nodo igual que ya estabá en abierto. En cuyo caso:
+                    ; meto a abierto el nuevo y saco el viejo.
+                    (t (when (< (get-nivel n) (get-nivel (first (member n abierto))))
+                        (setq abierto (remove (first (member n abierto)) abierto))
+                        (push n abierto)))))))
+    nil)
+
+; Le das un nodo base y reconstruye el camino que se siguio para llegar a el. 
+(defun reconstruct (base)
+    (setq camino ())
+    (cond
+        ((null (fifth base))camino)
+        (t (push (fifth base) camino)(reconstruct(second base)))))
+
+
+ (defun valido(oper1 oper2)
+    (cond
+        ((and (equal oper1 'izquierda)(equal oper2 'derecha))nil)
+        ((and (equal oper1 'derecha)(equal oper2 'izquierda))nil)
+        ((and (equal oper1 'arriba)(equal oper2 'abajo))nil)
+        ((and (equal oper1 'abajo)(equal oper2 'arriba))nil)
+        (t)))
 
 
 
