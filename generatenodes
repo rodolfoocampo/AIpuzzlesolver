@@ -41,6 +41,28 @@
     )
 hijos)
 
+(defun genera-hijitos (estado nivel)
+    (setq hijos '())
+    (setq lugar-cero (encuentracero estado))
+    (setq posibles-particular (nth lugar-cero posibles))
+    (dolist (n posibles-particular)
+    (push (swap n lugar-cero estado) hijos)
+    )
+hijos)
+
+(defun genera-nodos (estado nivel n lugar-cero)
+    (setq hijo '())	
+    (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
+    (push (heuristica (swap n lugar-cero estado)) hijo)
+    (push (incf nivel) hijo)
+    ;; este es el papa
+    (push estado hijo)
+    ;; este es el hijo
+    (push (swap n lugar-cero estado) hijo)
+hijo)
+
+;; definicion de nodo (estado papa nivel heuristica total)
+
 (DEFUN manhattan(estado)
 	(SETQ man 0)
 	(SETQ i 0)		;; man es la distancia manhattan del estado total
@@ -87,6 +109,23 @@ abierto)
         (incf i)
     )
  mindex)
+ 
+ (defun a* (inicial)
+   (setq abierto ())
+   (setq cerrado ())
+    ;; definimos al nodo como (estado papa nivel heuristica total)
+    
+    (push (list estado nil 0 (heuristica estado) (+ 0 (heuristica estado))) abierto)
+    
+    (loop 
+    	(setf minCostIndex (find-min-cost abierto))
+    	(setf current (nth minCostIndex abierto))
+	
+	;; luego definiremos la funcion de recosntruccion
+    	(when (equal (nth 0 current))(return (reconstruct cerrado)))
+    	(when (null abierto) (return 'error))
+    )
+;abierto)
 
 
 
