@@ -134,6 +134,17 @@ hijos)
     )
 hijos)
 
+(defun genera-nodos2 (nodo)
+   (setq hijos '())
+   (setq state (get-estado nodo))
+   (setq lugar-cero (encuentracero state))
+   (setq posibles-particular (nth lugar-cero posibles))
+   (dolist (n posibles-particular)
+    (setq nuevo (genera-nodo state (get-nivel nodo) n lugar-cero (get-dirpapa nodo)))
+    (push nuevo hijos)
+    )
+hijos)
+
 (defun genera-nodo (estado nivel n lugar-cero direc-papa)
     (setq hijo '())	
     (push direc-papa hijo)
@@ -145,6 +156,8 @@ hijos)
     ;; este es el hijo
     (push (swap n lugar-cero estado) hijo)
 hijo)
+
+
  
  
  
