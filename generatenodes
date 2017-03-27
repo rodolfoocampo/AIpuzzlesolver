@@ -76,14 +76,6 @@ hijo)
 	(manhattan estado)
 )
 
-(defun a* (inicial)
-    (setq abierto ())
-    (setq cerrado ())
-    ;; definimos al nodo como (estado papa nivel heuristica total)
-    
-    (push (setq first (estado nil 0 (heuristica inicial) (+ 0 (heuristica inicial)))) abierto)
-    
-abierto)
 
 
 
