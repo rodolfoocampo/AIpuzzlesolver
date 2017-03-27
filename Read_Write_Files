@@ -1,4 +1,4 @@
-Función de StackOverflow
+Función leer de StackOverflow
 (defun my-copy-file (from-file to-file)
   (with-open-file (input-stream from-file
                 :direction :input
@@ -13,7 +13,7 @@ Función de StackOverflow
        while (plusp pos)
        do (write-sequence buf output-stream :end pos))))))
 
-Función implementada
+Función leer implementada
 (DEFUN leer()
 	(SETQ l NIL)
 	(LOOP
@@ -24,3 +24,7 @@ Función implementada
 									n-ini (APPEND '(1 NIL 0 manhattan(eb) NIL)(LIST eb)))
 									(CLOSE l)(RETURN (verifica eb em))) ;la función verifica checa si son iguales el estado base al estado meta y si no empieza a resolver
 									(SETQ l(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt" :if-does-not-exist nil))))
+
+Función escribir implementada ;(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/sol.txt" :direction :output)
+(DEFUN escribir()
+	
