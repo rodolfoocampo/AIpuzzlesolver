@@ -70,10 +70,31 @@ hijo)
 (SETQ distancias '((0 1 2 1 2 3 2 3 4) (1 0 1 2 1 2 3 2 3) (2 1 0 3 2 1 4 3 2) 
 				   (1 2 3 0 1 2 1 2 3) (2 1 2 1 0 1 2 1 2) (3 2 1 2 1 0 3 2 1) 
 				   (2 3 4 1 2 3 0 1 2) (3 2 3 2 1 2 1 0 1) (4 3 2 3 2 1 2 1 0)))
-                   
+				   
+;; definicion de nodo (estado papa nivel heuristica total movimiento)               
      
 (defun heuristica (estado)
 	(manhattan estado)
+)
+
+(defun get-papa (nodo)
+   (nth 1 nodo)
+)
+
+(defun get-nivel (nodo)
+   (nth 2 nodo)
+)
+
+(defun get-heuristica (nodo)
+   (nth 3 nodo)
+)
+
+(defun get-total (nodo)
+   (nth 4 nodo)
+)
+
+(defun get-mov (nodo)
+   (nth 5 nodo)
 )
 
 
