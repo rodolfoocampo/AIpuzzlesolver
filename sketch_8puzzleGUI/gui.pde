@@ -19,6 +19,7 @@ public void textfield1_change1(GTextField source, GEvent event) { //_CODE_:textf
 } //_CODE_:textfield1:247806:
 
 public void textfield2_change1(GTextField source, GEvent event) { //_CODE_:textfield2:975964:
+
   println("textfield2 - GTextField >> GEvent." + event + " @ " + millis());
 } //_CODE_:textfield2:975964:
 
@@ -90,6 +91,16 @@ public void button1_click1(GButton source, GEvent event) { //_CODE_:button1:3754
 
 int i0, i1, i2, i3, i4, i5, i6, i7, i8, j0, j1, j2, j3, j4, j5, j6, j7, j8;
 
+  
+  textfield10.setText("0");
+  textfield11.setText("1");
+  textfield12.setText("2");
+  textfield13.setText("3");
+  textfield14.setText("4");
+  textfield15.setText("5");
+  textfield16.setText("6");
+  textfield17.setText("7");
+  textfield18.setText("8");
   i0 = Integer.valueOf(textfield1.getText());
   i1 = Integer.valueOf(textfield2.getText());
   i2 = Integer.valueOf(textfield3.getText());
@@ -108,6 +119,15 @@ int i0, i1, i2, i3, i4, i5, i6, i7, i8, j0, j1, j2, j3, j4, j5, j6, j7, j8;
   j6 = Integer.valueOf(textfield16.getText());
   j7 = Integer.valueOf(textfield17.getText());
   j8 = Integer.valueOf(textfield18.getText());
+  /*j0 = Integer.valueOf(0);
+  j1 = Integer.valueOf(1);
+  j2 = Integer.valueOf(2);
+  j3 = Integer.valueOf(3);
+  j4 = Integer.valueOf(4);
+  j5 = Integer.valueOf(5);
+  j6 = Integer.valueOf(6);
+  j7 = Integer.valueOf(7);
+  j8 = Integer.valueOf(8);*/
   
   String si0 = Integer.toString(i0);
   String si1 = Integer.toString(i1);
@@ -127,9 +147,18 @@ int i0, i1, i2, i3, i4, i5, i6, i7, i8, j0, j1, j2, j3, j4, j5, j6, j7, j8;
   String sj6 = Integer.toString(j6);
   String sj7 = Integer.toString(j7);
   String sj8 = Integer.toString(j8);
+  /*String sif = si0 + " " + si1 + " " + si2 + " " +  si3 + " " + si4 + " " + si5 + " " + si6 + " " + si7 + " " + si8;
+  String sjf = sj0 + " " + sj1 + " " + sj2 + " " + sj3 + " " + sj4 + " " + sj5 + " " + sj6 + " " + sj7 + " " + sj8;
+  String[] lst1 = {sif};
+  String[] lst2 = {sjf};
+  saveStrings("lst1.txt", lst1);
+  saveStrings("lst2.txt", lst2);*/
   String sf = si0 + " " + si1 + " " + si2 + " " +  si3 + " " + si4 + " " + si5 + " " + si6 + " " + si7 + " " + si8 + " " + sj0 + " " + sj1 + " " + sj2 + " " + sj3 + " " + sj4 + " " + sj5 + " " + sj6 + " " + sj7 + " " + sj8;
   String[] lst = split(sf, ' ');
   saveStrings("lst.txt", lst);
+  
+  launch("C:\\Users\\Christian\\Desktop\\vergas.bat");
+  
   
   boolean react = false; /* ¿Cómo declaras tu bandera? */
   
@@ -165,6 +194,7 @@ public void button2_click1(GButton source, GEvent event) { //_CODE_:button2:3722
   textfield16.setText("");
   textfield17.setText("");
   textfield18.setText("");
+  textarea1.setText("");
   
   File file1 = new File("/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt");
   File file2 = new File("/Users/Christian/Documents/Processing/sketch_8puzzleGUI/res.txt");
