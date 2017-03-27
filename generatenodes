@@ -54,7 +54,7 @@ hijos)
     (push (swap n lugar-cero estado) hijo)
 hijo)
 
-(defun es-valido )
+
 
 ;; definicion de nodo (estado papa nivel heuristica total)
 
@@ -150,7 +150,6 @@ hijos)
     	(when (null abierto) (return 'error))
     )
 abierto)
-
 
 
 
