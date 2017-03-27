@@ -26,5 +26,10 @@ Función leer implementada
 									(SETQ l(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/lst.txt" :if-does-not-exist nil))))
 
 Función escribir implementada ;(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/sol.txt" :direction :output)
-(DEFUN escribir()
+(DEFUN escribir(lst)
+	(SETQ i 0 l lst)
+	(SETQ r(OPEN "/c/Users/Christian/Documents/Processing/sketch_8puzzleGUI/res.txt" :direction :output))
+	(LOOP WHILE (< i (LENGTH lst))
+		DO(WRITE-LINE (WRITE-TO-STRING(POP l)) r)(INCF i))
+		(CLOSE r))
 	
