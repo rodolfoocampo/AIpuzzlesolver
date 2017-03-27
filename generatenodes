@@ -118,7 +118,7 @@ abierto)
     	(when (equal (nth 0 current))(return (reconstruct cerrado)))
     	(when (null abierto) (return 'error))
     )
-;abierto)
+abierto)
 
 
 
