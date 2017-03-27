@@ -50,16 +50,7 @@ hijos)
 
 
 
-(defun genera-nodo (estado nivel n lugar-cero)
-    (setq hijo '())	
-    (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
-    (push (heuristica (swap n lugar-cero estado)) hijo)
-    (push (incf nivel) hijo)
-    ;; este es el papa
-    (push estado hijo)
-    ;; este es el hijo
-    (push (swap n lugar-cero estado) hijo)
-hijo)
+
 
 
 
@@ -138,6 +129,17 @@ hijo)
     (push (genera-nodo state (get-nivel nodo) n lugar-cero) hijos)
     )
 hijos)
+
+(defun genera-nodo (estado nivel n lugar-cero)
+    (setq hijo '())	
+    (push (+ nivel (heuristica (swap n lugar-cero estado))) hijo)
+    (push (heuristica (swap n lugar-cero estado)) hijo)
+    (push (incf nivel) hijo)
+    ;; este es el papa
+    (push estado hijo)
+    ;; este es el hijo
+    (push (swap n lugar-cero estado) hijo)
+hijo)
  
  
  
